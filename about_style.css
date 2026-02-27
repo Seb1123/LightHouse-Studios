@@ -1,0 +1,270 @@
+@font-face {
+    font-family: 'Cinzel';
+    src: url('./Fonts/Ancient/Cinzel-VariableFont_wght.ttf')
+}
+@font-face {
+    font-family: 'JetBrains';
+    src: url('./Fonts/JetBrainsMono/JetBrainsMono-Medium.ttf');
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root, html {
+    font-size: 16px;
+}
+
+body {
+    min-height: 100vh;
+    height: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header {
+    align-self: stretch;
+    padding: calc(5px + 1vh);
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: white;
+    box-shadow: 0px 5px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+} header:hover {
+    box-shadow: 0px 5px 4px rgba(0,0,0,0.2);
+    transition: 1s;
+} header .brand {
+    align-self: flex-start;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+} header .brand img {
+    width: 50px;
+} header .brand h4 {
+    display: flex;
+    gap: 5px;
+
+    font-family: 'Cinzel';
+    letter-spacing: 1px;
+} header .brand h4 div {
+    display: flex;
+    gap: 2px;
+} header .brand h4 #light {
+    font-weight: 100;
+} header nav {
+    position: relative;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+} header nav .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0px;
+} header nav button {
+    align-self: flex-end;
+    padding: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: none;
+    cursor: context-menu;
+    font-size: 20px;
+} header nav button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+} header nav .menu-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 180px;
+    padding: 10px;
+
+    display: grid;
+    gap: 6px;
+
+    background: white;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 160ms ease, transform 160ms ease;
+} header nav .menu-panel a {
+    font-family: 'JetBrains';
+    text-decoration: none;
+} header nav .menu-panel a:hover, header nav .menu-panel a:focus-visible {
+    background: rgba(0,0,0,0.06);
+    outline: none;
+}
+.menu.open .menu-panel {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+main {
+    align-self: stretch;
+    flex: 1 0 auto;
+    padding: 5vh 5vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* gap: clamp(20px, 2vh, 40px); */
+} main h1 {
+    font-family: 'JetBrains';
+    font-size: calc(2rem + 2vw);
+} .text-section {
+    align-self: stretch;
+    flex: 1 0 auto;
+    padding: 5vw 2vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+} .text-section h3 {
+    max-width: 1200px;
+    font-family: 'JetBrains';
+    font-size: calc(1rem + 1.5vw);
+} .text-section p {
+    margin-left: 65px;
+    width: clamp(100px, 90%, 950px);
+
+    line-height: calc(1.75rem + 2.5vh);
+    font-family: 'JetBrains';
+    font-size: calc(1rem + 0.55vw);
+} .text-section ul {
+    margin-top: -2.5rem;
+    margin-left: 95px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: calc(1rem + 1.55vh);
+} .text-section ul li {
+    font-family: 'JetBrains';
+    font-size: calc(1rem + 0.5vw);
+    text-indent: calc(10px + 0.1vw);
+} .text-section div {
+    align-self: stretch;
+    flex: 1 0 auto;
+    padding: clamp(5vh, 90px, 12vh) 2vw;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(75px, 2vh, 85px);
+
+    border-bottom: 1px solid black;
+} .introPar {
+    border-top: 1px solid black;
+} .introPar p, .whyPar p {
+    align-self: flex-start;
+    text-align: start;
+}
+
+@media (max-width: 720px) {
+    main h1 {
+        margin-bottom: clamp(20px, 1.5vh, 30px);
+    } .text-section {
+        padding: clamp(3vh,30px,15vh) 2vw;
+    } .text-section div {
+        padding: 8vh 4vw;
+
+        gap: clamp(40px, 2vh, 55px);
+    } .text-section p {
+        margin-left: 15px;
+        font-size: calc(0.75rem + 0.75vw);
+    } .text-section ul {
+        margin-left: 20px;
+    } .text-section ul li {
+        margin-left: 15px;
+        font-size: calc(0.75rem + 0.75vw);
+    }
+    .introPar, .whyPar {
+        gap: clamp(30px, 2vh, 40px);
+        line-height: calc(1.25rem + 0.25vh);
+    }
+}
+
+@media (min-height: 1200px) {
+    main h1 {
+        font-size: calc(2rem + 2vw);
+    } .text-section {
+        align-self: stretch;
+        flex: 1 0 auto;
+        padding: clamp(3vh,100px,15vh) 2vw;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    } .text-section h3 {
+        font-family: 'JetBrains';
+        font-size: calc(1rem + 2vw);
+    } .text-section p {
+        margin-left: 65px;
+        width: clamp(100px, 90%, 950px);
+
+        /* line-height: clamp(1.25rem, 1.75vh, 1.75rem); */
+        font-family: 'JetBrains';
+        font-size: calc(1rem + 0.85vw);
+    } .text-section ul {
+        margin-left: 95px;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: clamp(10px, 1.55vh, 25px);
+    } .text-section ul li {
+        font-family: 'JetBrains';
+        font-size: calc(1rem + 0.5vw);
+        text-indent: calc(10px + 0.1vw);
+    } .text-section div {
+        align-self: stretch;
+        flex: 1 0 auto;
+        padding: clamp(5vh, 90px, 12vh) 2vw;
+        
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: clamp(75px, 2vh, 85px);
+
+        border-bottom: 1px solid black;
+    } .introPar {
+        border-top: 1px solid black;
+    } .introPar p, .whyPar p {
+        align-self: flex-start;
+        text-align: start;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="description" content="Interested in getting a quote for your website? Reach out and expect a reply within 24 hours!">
+        <script src="contact_script.js" defer></script>
+        <link rel="stylesheet" href="contact_style.css">
+        <link rel="icon" href="./images/LH_Main_Favicon.svg">
+        <title>| Contact | LightHouse Web Studios - A beacon for creative craft.</title>
+    </head>
+    <body>
+        <header>
+            <div class="brand">
+                <img src="./images/LH_Main.svg">
+                <h4><div><span id="light">Light</span><span id="house">House</span></div> Studios</h4>
+            </div>
+            <nav class="menu">
+                <button type="button" class="menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">
+                    <span class="sr-only">Open menu</span>
+                    &#9776;
+                </button>
+                <div class="menu-panel" id="menu-panel" role="menu">
+                    <a role="menuitem" href="./index.html">Home</a>
+                    <a role="menuitem" href="./about.html">About</a>
+                    <a role="menuitem" href="./pwork.html">Prev. Work</a>
+                    <a role="menuitem" href="./serv.html">Services</a>
+                    <a role="menuitem" href="./contact.html">Contact</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="contact-title">
+                <h1>Contact.</h1>
+                <small>Interested in getting a quote for your website? Reach out and expect a reply within 24 hours!</small>
+            </div>
+            <form id="contact-form" method="POST">
+                <div class="contact-name">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="client-name" required>
+                </div>
+                <div class="contact-email">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="client-email" required>
+                </div>
+                <div class="contact-message">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="client-message" required></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p id="form-status"></p>
+        </main>
+    </body>
+</html>

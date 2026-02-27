@@ -1,0 +1,310 @@
+@font-face {
+    font-family: 'Cinzel';
+    src: url('./Fonts/Ancient/Cinzel-VariableFont_wght.ttf')
+}
+@font-face {
+    font-family: 'JetBrains';
+    src: url('./Fonts/JetBrainsMono/JetBrainsMono-Medium.ttf');
+}
+@font-face {
+    font-family: 'JetBrains_Light';
+    src: url('./Fonts/JetBrainsMono/JetBrainsMono-Light.ttf');
+}
+@font-face {
+    font-family: 'JetBrains_XLight';
+    src: url('./Fonts/JetBrainsMono/JetBrainsMono-ExtraLight.ttf');
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root, html {
+    font-size: 16px;
+}
+
+body {
+    min-height: 100vh;
+    height: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header {
+    align-self: stretch;
+    padding: calc(5px + 1vh);
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: white;
+    box-shadow: 0px 5px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+} header:hover {
+    box-shadow: 0px 5px 4px rgba(0,0,0,0.2);
+    transition: 1s;
+} header .brand {
+    align-self: flex-start;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+} header .brand img {
+    width: 50px;
+} header .brand h4 {
+    display: flex;
+    gap: 5px;
+
+    font-family: 'Cinzel';
+    letter-spacing: 1px;
+} header .brand h4 div {
+    display: flex;
+    gap: 2px;
+} header .brand h4 #light {
+    font-weight: 100;
+} header nav {
+    position: relative;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+} header nav .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0px;
+} header nav button {
+    align-self: flex-end;
+    padding: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: none;
+    cursor: context-menu;
+    font-size: 20px;
+} header nav button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+} header nav .menu-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 180px;
+    padding: 10px;
+
+    display: grid;
+    gap: 6px;
+
+    background: white;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 160ms ease, transform 160ms ease;
+} .menu-panel a {
+    font-family: 'JetBrains';
+    text-decoration: none;
+} .menu-panel a:hover, .menu-panel a:focus-visible {
+    background: rgba(0,0,0,0.06);
+    outline: none;
+}
+.menu.open .menu-panel {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+main {
+    align-self: stretch;
+    flex: 1 0 auto;
+    padding: 7vh 5vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: calc(1rem + 2vh);
+} main * {
+    font-family: 'JetBrains';
+}
+
+.services-title {
+    margin-bottom: calc(40px + 2vh);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: calc(10px + 0.5vh);
+} .services-title h1 {
+    font-size: calc(2rem + 2vw);
+} .services-title p {
+    font-size: calc(0.5rem + 0.5vw);
+    font-style: italic;
+    text-indent: calc(10px + 1vw);
+}
+
+.foundation {
+    align-self: stretch;
+    padding: 6vh 2vw 2vh 2vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: calc(10px + 1.5vh);
+
+    border: 5px solid black;
+    font-size: calc(1rem + 0.25vw);
+} .foundation-title {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+} .foundation-title h2 {
+    margin-bottom: 0.25vh;
+
+    text-align: center;
+} #foundation-title-main {
+    font-size: calc(2rem + 0.5vw);
+    letter-spacing: calc(2px + 0.1vw);
+} .foundation-title #foundation-price {
+    font-family: 'JetBrains_XLight','JetBrains_Light','JetBrains';
+    font-weight: 100;
+} #foundation-title-submain {
+    margin-left: 1vw;
+} #special-rate {
+    align-self: flex-start;
+    margin-top: 1.5vh;
+    
+    font-style: italic;
+    text-indent: 1.5vw;
+} #special-rate details {
+    font-size: 1rem;
+    text-indent: 2vw;
+} #special-rate summary {
+    cursor: pointer;
+} .foundation-list {
+    align-self: center;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: calc(15px + 0.75vh);
+} .foundation-list li {
+    align-self: flex-start;
+    /* text-indent: 20px; */
+} .foundation-caveats {
+    align-self: flex-end;
+    margin-right: 20px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: calc(5px + 0.25vh);
+
+    font-size: calc(12px + 0.1vw);
+}
+
+.bundles {
+    align-self: stretch;
+    margin-top: calc(20px + 5vh);
+} .bundles h2 {
+    font-size: calc(1.75rem + 1vw);
+} .bundles > div{
+    padding: 3vh 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: calc(0.5rem + 0.5vh);
+
+    border-bottom: 1px solid black;
+} .bundle-title {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}.bundle-title h3 {
+    font-size: calc(1.25rem + 0.55vw);
+    text-indent: 0.5vw;
+}  .bundle-title h3 .bundle-price {
+    font-family: 'JetBrains_XLight';
+    font-weight: 100;
+} .bundle-title small {
+    font-size: calc(0.75rem + 0.25vw);
+    text-indent: 2.5vw;
+} .bundles ul {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: calc(0.25rem + 0.1vh);
+
+    font-size: calc(0.95rem + 0.35vw);
+    text-indent: 2.5vw;
+} .bundles .function-bundle {
+    border-bottom: none;
+} 
+.function-bundle p {
+    text-transform:uppercase;
+    font-style:italic;
+}
+
+@media(max-width: 720px) {
+    main {
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+    .services-title {
+        margin-bottom: calc(20px + 1vh);
+    } .services-title p {
+        font-size: calc(0.5rem + 0.75vw);
+    }
+    .foundation {
+        padding: 4vh 1vw;
+    } .foundation-title {
+        margin-bottom: calc(0.25rem + 0.5vh);
+
+        gap: calc(15px + 0.5vh);
+    } .foundation-title h2 {
+        text-align: center;
+    } .foundation-title #foundation-title-submain {
+        width: clamp(200px, 80%, 375px);
+        margin: 0 auto;
+        text-align: center;
+    } .foundation-title i {
+        font-size: calc(0.75rem + 0.25vw);
+    } .foundation-list {
+        max-width: 250px;
+        font-size: calc(0.75rem + 0.55vw);
+    } .foundation-list li {
+        margin-left: calc(10px + 0.25vw);
+    }
+    .bundles li {
+        margin-left: calc(1rem + 0.5vw);
+    }
+}

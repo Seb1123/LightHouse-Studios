@@ -1,0 +1,247 @@
+@font-face {
+    font-family: 'Cinzel';
+    src: url('./Fonts/Ancient/Cinzel-VariableFont_wght.ttf')
+}
+@font-face {
+    font-family: 'JetBrains';
+    src: url('./Fonts/JetBrainsMono/JetBrainsMono-Medium.ttf');
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root, html {
+    font-size: 16px;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header {
+    align-self: stretch;
+    padding: calc(5px + 1vh);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+} header:hover {
+    box-shadow: 0px 5px 2px rgba(0,0,0,0.1);
+    transition: 1s;
+} header nav {
+    position: relative;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+} header nav .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0px;
+} header nav button {
+    align-self: flex-end;
+    padding: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+} header nav button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+} header nav .menu-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 180px;
+    padding: 10px;
+
+    display: grid;
+    gap: 6px;
+
+    background: white;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 14px;
+    box-shadow: 
+                0 1px 0 rgba(0, 0, 0, 0.05),
+                0 8px 20px rgba(0, 0, 0, 0.04);
+        /* 0 12px 30px rgba(0,0,0,0.12); */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 160ms ease, transform 160ms ease;
+    z-index: 5
+} header nav .menu-panel a {
+    font-family: 'JetBrains';
+    text-decoration: none;
+} header nav .menu-panel a:hover, header nav .menu-panel a:focus-visible {
+    background: rgba(0,0,0,0.06);
+    outline: none;
+}
+.menu.open .menu-panel {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+main {
+    align-self: stretch;
+    flex: 1 0 auto;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: calc(50px + 7vh);
+} .brand {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: center;
+    align-items: center;
+
+    /* animation */
+    opacity: 0;
+    transform: translateY(6px);
+    animation: FadeIn 900ms ease-out forwards;
+    animation-delay: 520ms;
+} .brand .title-text {
+    display: flex;
+    gap: calc(10px + 0.55vw);
+
+    font-family: 'Cinzel';
+    font-size: calc(2rem + 0.75vw);
+    letter-spacing: 2px;
+} .brand .title-text .LightHouse {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: calc(3px + 0.35vw);
+} .brand #light {
+    font-weight: 100;
+    letter-spacing: calc(1px + 0.05vw);
+} #capL {
+    font-size: calc(2rem + 1.5vw);
+} .brand #house {
+    font-weight: 700;
+} #capH {
+    font-size: calc(2rem + 1.5vw);
+} .brand .title-text .Studios {
+
+} #capS {
+    font-size: calc(2rem + 1.5vw);
+} .brand .subtitle-text {
+    font-size: calc(0.75rem + 0.75vw);
+    letter-spacing: 2px;
+} .brand img {
+    width: 600px;
+    height: auto;
+    transform: translateY(-10px);
+    filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.42));
+            /* drop-shadow(1px 1px 4px rgba(0,0,0,0.28)); */
+}
+
+@keyframes FadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* footer {
+    align-self: center;
+    margin-top: calc(25px + 5vh);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} .location {
+    margin-left: calc(50px + 1.5vw);
+    font-size: calc(0.75rem + 0.5vw);
+}  */
+
+/* When adding social media links... */
+
+/* .icons {
+    margin-right: calc(50px + 1.5vw);
+
+    display: flex;
+    justify-content: space-around;
+    gap: calc(2px + 0.5vw);
+
+    font-size: calc(0.75rem + 0.5vw);
+} .icons li {
+    list-style-type: none;
+} */
+
+@media (max-width: 600px) {
+    /* Nav Bar */
+    header {
+        padding: 0px;
+    } .menu-btn {
+        margin-right: 3vw;
+    } header nav .menu-panel {
+        top: 90%;
+    }
+    
+
+    /* Body */
+    .brand img {
+        max-width: 100%;
+        width: 80%;
+        transform: translateY(-18px);
+        filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.42));
+                /* drop-shadow(2px 2px 4px rgba(0,0,0,0.28)); */
+    }
+    .brand .title-text {
+        font-size: calc(1rem + 1.55vw);
+    } #capL, #capH, #capS {
+        font-size: calc(1.25rem + 1.55vw);
+    } .brand .subtitle-text {
+        font-size: calc(0.55rem + 0.55vw);
+        letter-spacing: 1.5px;
+    }
+
+    /* Footer */
+    /* footer {
+        flex: 0 0 auto;
+        margin-top: calc(20px + 12vh);
+
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: calc(20px + 5vh);  
+    }  */
+
+    /* When adding social media links... */
+    /* .location {
+        order: 2;
+    } .icons {
+        order: 1;
+    } .location, .icons {
+        margin: auto;
+    } */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand{ animation: none; opacity: 1; transform: none; }
+}
