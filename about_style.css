@@ -213,6 +213,12 @@ main {
         gap: clamp(30px, 2vh, 40px);
         line-height: calc(1.25rem + 0.25vh);
     }
+    .approachPar ul {
+        margin-top: 0.5vh;
+    }
+    .workWithPar ul {
+        margin-top: -1.1vh;
+    }
 }
 
 @media (min-height: 1200px) {
