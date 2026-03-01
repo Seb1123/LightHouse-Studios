@@ -50,3 +50,30 @@ panel.addEventListener("click", (e) => {
   const link = e.target.closest("a");
   if (link) setOpen(false);
 });
+
+// Resend function
+const form = document.querySelector("#contact-form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const payload = {
+    name: form.querySelector('[name="name"]').value.trim(),
+    email: form.querySelector('[name="email"]').value.trim(),
+    message: form.querySelector('[name="message"]').value.trim(),
+    website: form.querySelector('[name="website"]').value || "", // honeypot
+  };
+
+  const r = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (r.ok) {
+    alert("Message sent!");
+    form.reset();
+  } else {
+    alert("Something went wrong. Please try again.");
+  }
+});
