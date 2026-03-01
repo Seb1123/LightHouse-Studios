@@ -1,53 +1,55 @@
 export async function onRequestPost({ request, env }) {
   try {
+    // Enforce JSON
     const contentType = request.headers.get("content-type") || "";
     if (!contentType.includes("application/json")) {
-      return new Response("Expected JSON", { status: 415 });
+      return new Response("Expected application/json", { status: 415 });
     }
 
     const { name, email, message, website } = await request.json();
 
-    // Honeypot (bots fill it; humans won't)
-    if (website) return new Response("ok", { status: 200 });
+    // Honeypot: pretend success to bots (prevents them learning)
+    if (website) {
+      return new Response("sent", { status: 200 });
+    }
 
-    // Basic validation
+    // Validation
     if (!name || !email || !message) {
       return new Response("Missing required fields", { status: 400 });
     }
 
-    // Minimal email sanity check
+    // Light email sanity check
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response("Invalid email", { status: 400 });
     }
 
-    const RESEND_KEY = env.RESEND_API_KEY;
-    if (!RESEND_KEY) {
-      return new Response("Server misconfigured", { status: 500 });
+    if (!env.RESEND_API_KEY) {
+      return new Response("Server misconfigured (missing RESEND_API_KEY)", { status: 500 });
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
+    // Send via Resend
+    const resendRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${RESEND_KEY}`,
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // IMPORTANT: Resend requires a verified "from" domain.
-        from: "hello@lighthousewebstudio.com",
+        from: "contact@lighthousewebstudio.com",
         to: "contact@lighthousewebstudio.com",
         reply_to: email,
-        subject: `LHS Contact — ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+        subject: `LHS Contact Form — ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       }),
     });
 
-    if (!res.ok) {
-      const errText = await res.text().catch(() => "");
-      return new Response(`Resend error: ${errText}`, { status: 502 });
+    if (!resendRes.ok) {
+      const errText = await resendRes.text().catch(() => "");
+      return new Response(`Resend error: ${errText || "unknown"}`, { status: 502 });
     }
 
     return new Response("sent", { status: 200 });
-  } catch {
+  } catch (e) {
     return new Response("Server error", { status: 500 });
   }
 }

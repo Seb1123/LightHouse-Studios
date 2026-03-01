@@ -51,29 +51,49 @@ panel.addEventListener("click", (e) => {
   if (link) setOpen(false);
 });
 
+
 // Resend function
-const form = document.querySelector("#contact-form");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#contact-form");
+  const statusEl = document.querySelector("#form-status");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  if (!form) return;
 
-  const payload = {
-    name: form.querySelector('[name="name"]').value.trim(),
-    email: form.querySelector('[name="email"]').value.trim(),
-    message: form.querySelector('[name="message"]').value.trim(),
-    website: form.querySelector('[name="website"]').value || "", // honeypot
-  };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const r = await fetch("/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    // Grab fields exactly as defined in your HTML
+    const nameEl = form.querySelector('[name="client-name"]');
+    const emailEl = form.querySelector('[name="client-email"]');
+    const messageEl = form.querySelector('[name="client-message"]');
+    const honeypotEl = form.querySelector('[name="website"]');
+
+    const payload = {
+      name: (nameEl?.value || "").trim(),
+      email: (emailEl?.value || "").trim(),
+      message: (messageEl?.value || "").trim(),
+      website: (honeypotEl?.value || "").trim(), // honeypot
+    };
+
+    // UI: feedback
+    if (statusEl) statusEl.textContent = "Sending…";
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        if (statusEl) statusEl.textContent = "✅ Sent. I’ll reply within 24 hours.";
+        form.reset();
+      } else {
+        const text = await res.text().catch(() => "");
+        if (statusEl) statusEl.textContent = `❌ Failed to send. ${text || "Please try again."}`;
+      }
+    } catch (err) {
+      if (statusEl) statusEl.textContent = "❌ Network error. Please try again.";
+    }
   });
-
-  if (r.ok) {
-    alert("Message sent!");
-    form.reset();
-  } else {
-    alert("Something went wrong. Please try again.");
-  }
 });
